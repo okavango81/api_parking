@@ -1,16 +1,13 @@
 package com.okavango.api_parking.controllers;
 
-import com.okavango.api_parking.entities.User;
 import com.okavango.api_parking.entities.dtos.UserMinDTO;
 import com.okavango.api_parking.entities.dtos.UserRegistrationDTO;
 import com.okavango.api_parking.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,8 +18,21 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserMinDTO> created(@RequestBody UserRegistrationDTO userRegistrationDTO){
-        UserMinDTO newUser = userService.registration(userRegistrationDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
+       return userService.registration(userRegistrationDTO);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserMinDTO> findBy(@PathVariable Long id){
+        return userService.searchById(id);
+    }
+
+    @GetMapping
+    public List<UserMinDTO> all(){
+        return userService.returnAll();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        return userService.deleteRecord(id);
+    }
 }
