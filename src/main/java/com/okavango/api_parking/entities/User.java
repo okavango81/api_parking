@@ -27,11 +27,17 @@ public class User implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 25)
-    private Role role = Role.ROLE_ADMIN;
+    private Role role = Role.ROLE_CLIENT;
     private LocalDateTime dateOfCreation;
     private LocalDateTime dateOfModification;
     private String createdBy;
     private String modifiedBy;
+
+    //construtor para UserRegistrationDTO
+    public User(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
 
     @Override
     public boolean equals(Object o) {
