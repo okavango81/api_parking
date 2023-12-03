@@ -1,9 +1,11 @@
-package com.okavango.api_parking.entities.controllers;
+package com.okavango.api_parking.controllers;
 
+import com.okavango.api_parking.entities.User;
 import com.okavango.api_parking.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -11,4 +13,5 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService userService;
+
 }
