@@ -2,7 +2,6 @@ package com.okavango.api_parking.entities.dtos;
 
 import com.okavango.api_parking.entities.User;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public class UserMinDTO {
