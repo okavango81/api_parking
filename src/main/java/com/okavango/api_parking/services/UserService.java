@@ -33,9 +33,8 @@ public class UserService {
         Optional<User> user = userRepository.findById(id);
 
         if (user.isPresent()) {
-            User userFound = user.get();
-            UserMinDTO userMinDTO = new UserMinDTO(userFound);
-            return ResponseEntity.ok().body(userMinDTO);
+            UserMinDTO userFound = new UserMinDTO(user.get());
+            return ResponseEntity.ok().body(userFound);
         } else {
             throw new RuntimeException("Not Found");
         }
