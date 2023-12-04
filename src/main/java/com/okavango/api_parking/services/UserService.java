@@ -47,6 +47,19 @@ public class UserService {
         return userRepository.findAll().stream().map(UserMinDTO::new).toList();
     }
 
+    //atualizar senha
+    @Transactional
+    public ResponseEntity<UserMinDTO> updatePassword(Long id, UserRegistrationDTO userRegistrationDTO){
+        Optional<User> user = userRepository.findById(id);
+
+        if (user.isPresent()){
+            user.get().setPassword(userRegistrationDTO.getPassword());
+            return searchById(id);
+        }else {
+           throw new RuntimeException("Not Found");
+       }
+    }
+
     //deletar
     @Transactional
     public ResponseEntity<Void> deleteRecord(Long id){

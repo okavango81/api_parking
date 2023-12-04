@@ -31,6 +31,13 @@ public class UserController {
         return userService.returnAll();
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<UserMinDTO> updatePass(
+            @PathVariable Long id, @RequestBody UserRegistrationDTO userRegistrationDTO)
+    {
+        return userService.updatePassword(id, userRegistrationDTO);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         return userService.deleteRecord(id);
