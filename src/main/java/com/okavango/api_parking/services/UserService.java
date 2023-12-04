@@ -19,6 +19,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    //cadastrar
     @Transactional
     public ResponseEntity<UserMinDTO> registration(UserRegistrationDTO userRegistrationDTO) {
         User user = new User(userRegistrationDTO.getUsername(), userRegistrationDTO.getPassword());
@@ -27,7 +28,7 @@ public class UserService {
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
 
-
+    //buscar por id
     @Transactional(readOnly = true)
     public ResponseEntity<UserMinDTO> searchById(Long id) {
         Optional<User> user = userRepository.findById(id);
@@ -40,11 +41,13 @@ public class UserService {
         }
     }
 
+    //listar todos
     @Transactional(readOnly = true)
     public List<UserMinDTO> returnAll() {
         return userRepository.findAll().stream().map(UserMinDTO::new).toList();
     }
 
+    //deletar
     @Transactional
     public ResponseEntity<Void> deleteRecord(Long id){
          userRepository.deleteById(id);
